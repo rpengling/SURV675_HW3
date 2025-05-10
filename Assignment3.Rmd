@@ -1,88 +1,9 @@
 ---
 title: "Assignment3"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
-
-
-
-# Code to remove ---------------------
-Example Spark Code: 
-
-select(cars, hp, mpg) %>%
-  sample_n(100) %>%
-  collect() %>%
-  plot()
-
-dbGetQuery(sc, "SELECT count(*) FROM full.pop")
-
-model %>%
-  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %>%
-  transmute(hp = hp, mpg = prediction) %>%
-  full_join(select(cars, hp, mpg)) %>%
-  collect() %>%
-  plot()
-
-spark_write_csv(cars, "cars.csv")
-
-cars <- spark_read_csv(sc, "cars.csv")
-
-install.packages("sparklyr.nested")
-
-sparklyr.nested::sdf_nest(cars, hp) %>%
-  group_by(cyl) %>%
-  summarise(data = collect_list(data)) 
-  
-cars %>% spark_apply(~round(.x)) 
-
-dir.create("input")
-write.csv(mtcars, "input/cars_1.csv", row.names = F)
-
-stream <- stream_read_csv(sc, "input/") %>%
-    select(mpg, cyl, disp) %>%
-    stream_write_csv("output/")
-    
-dir("output", pattern = ".csv") 
-
-# Write more data into the stream source
-write.csv(mtcars, "input/cars_2.csv", row.names = F) 
-
-# Check the contents of the stream destination
-dir("output", pattern = ".csv") 
-
-stream_stop(stream) 
-
-spark_log(sc) 
-
-spark_log(sc, filter = "sparklyr")
-
-spark_disconnect(sc) 
-
-spark_disconnect_all() 
-
-an active connection provides the following custom actions:
-
-Spark
-Opens the Spark web interface; a shortcut to spark_web(sc).
-Log
-Opens the Spark web logs; a shortcut to spark_log(sc).
-SQL
-Opens a new SQL query. For more information about DBI and SQL support, see Chapter 3.
-Help
-Opens the reference documentation in a new web browser window.
-Disconnect
-Disconnects from Spark; a shortcut to spark_disconnect(sc).
-
-In the R environment, cars can be treated as if it were a local DataFrame, so you can use dplyr verbs. For instance, we can find out the mean of all columns by using summarise_all():
-
-summarize_all(cars, mean) %>% show_query() 
-
-can use any Spark SQL functions to accomplish operations that might not be available via dplyr. 
-The percentile() function returns the exact percentile of a column in a group. The function expects a column name, and either a single percentile value or an array of percentile values. We can use this Spark SQL function from dplyr, as follows:
-
-summarise(cars, mpg_percentile = percentile(mpg, 0.25))
-
-
-
 
 Disconnect before rendering
 
@@ -187,7 +108,7 @@ time_spark <- copy_to(sc, time_long)
 
 #filter to only include the data for specified countries 
 filtered_spark <- time_spark %>% 
-  filter(CountryRegion %in% c("United Kingdom"," Japan", "US", "Brazil", "Mexico")) %>% 
+  filter(CountryRegion %in% c("United Kingdom", "Japan", "US", "Brazil", "Mexico")) %>% 
     collect()
 
 #renaming so match
@@ -227,7 +148,30 @@ Cases_by_Day <- full_pop %>%
 
 # Data Visualization
 ```{r}
+#Count & Country
+Covid_Over_Time <- Cases_by_Day %>%
+  filter(!is.na(Total_Cases)) %>%
+  ggplot(aes(x = Date, y = Total_Cases, color = `CountryRegion`)) +
+    geom_smooth(linetype = 1,
+      linewidth = 1.25) +
+  theme_bw() +
+    labs(x = "Date", y = "Number of Confirmed COVID Cases",
+        title = "Figure 1. 
+        Confirmed COVID-19 Cases Over Time",
+        caption = "Data from CSSEGISandData/COVID-19", 
+        color = "Country/Region")
 
+#Rate & Country
+Rate_Over_Time <- Cases_by_Day %>% 
+  ggplot(aes(x = Date, y = Rate_of_Cases, color = `CountryRegion`)) +
+    geom_smooth(linetype = 1,
+      linewidth = 1.25) +
+  theme_bw() +
+    labs(x = "Date", y = "Rate of Infection",
+        title = "Figure 2. 
+        Rate of Infection Over Time by Country",
+        caption = "Data from CSSEGISandData/COVID-19",
+        color = "Country/Region")
 ```
 
 
