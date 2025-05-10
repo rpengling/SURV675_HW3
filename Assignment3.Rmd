@@ -1,0 +1,194 @@
+---
+title: "Assignment3"
+output: html_document
+---
+
+
+
+# Code to remove ---------------------
+Example Spark Code: 
+
+select(cars, hp, mpg) %>%
+  sample_n(100) %>%
+  collect() %>%
+  plot()
+
+dbGetQuery(sc, "SELECT count(*) FROM full.pop")
+
+model %>%
+  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %>%
+  transmute(hp = hp, mpg = prediction) %>%
+  full_join(select(cars, hp, mpg)) %>%
+  collect() %>%
+  plot()
+
+spark_write_csv(cars, "cars.csv")
+
+cars <- spark_read_csv(sc, "cars.csv")
+
+install.packages("sparklyr.nested")
+
+sparklyr.nested::sdf_nest(cars, hp) %>%
+  group_by(cyl) %>%
+  summarise(data = collect_list(data)) 
+  
+cars %>% spark_apply(~round(.x)) 
+
+dir.create("input")
+write.csv(mtcars, "input/cars_1.csv", row.names = F)
+
+stream <- stream_read_csv(sc, "input/") %>%
+    select(mpg, cyl, disp) %>%
+    stream_write_csv("output/")
+    
+dir("output", pattern = ".csv") 
+
+# Write more data into the stream source
+write.csv(mtcars, "input/cars_2.csv", row.names = F) 
+
+# Check the contents of the stream destination
+dir("output", pattern = ".csv") 
+
+stream_stop(stream) 
+
+spark_log(sc) 
+
+spark_log(sc, filter = "sparklyr")
+
+spark_disconnect(sc) 
+
+spark_disconnect_all() 
+
+an active connection provides the following custom actions:
+
+Spark
+Opens the Spark web interface; a shortcut to spark_web(sc).
+Log
+Opens the Spark web logs; a shortcut to spark_log(sc).
+SQL
+Opens a new SQL query. For more information about DBI and SQL support, see Chapter 3.
+Help
+Opens the reference documentation in a new web browser window.
+Disconnect
+Disconnects from Spark; a shortcut to spark_disconnect(sc).
+
+In the R environment, cars can be treated as if it were a local DataFrame, so you can use dplyr verbs. For instance, we can find out the mean of all columns by using summarise_all():
+
+summarize_all(cars, mean) %>% show_query() 
+
+can use any Spark SQL functions to accomplish operations that might not be available via dplyr. 
+The percentile() function returns the exact percentile of a column in a group. The function expects a column name, and either a single percentile value or an array of percentile values. We can use this Spark SQL function from dplyr, as follows:
+
+summarise(cars, mpg_percentile = percentile(mpg, 0.25))
+
+
+
+
+Disconnect before rendering
+
+
+
+
+#########################################################################################################
+In this assignment you are going to produce an analytic notebook looking at the change in time in the
+number of covid cases. An analytically notebook is slightly different from what you submitted last time. It
+typically includes all the code and results and walks the reader through all the steps of your analysis. These
+are very useful for work in progress and for communicating with colleagues who know programming/stats.
+You are going to use the data from the first assignment with as spin on it. You will use a local Spark server
+for some of the activities and then write your report.
+Your submission will again be a GitHub repo that will include the README and the analytical
+report.
+
+
+
+1. Set up a local Spark server and add the two datasets you used in the first assignment from their GitHub
+repository. (20%)
+
+2. In Spark, merge the two datasets, make a smaller version that includes only: Germany, China,
+Japan, United Kingdom, US, Brazil, Mexico and calculate the number of cases and rate of cases
+(cases/population) by country and day. Do two graphs and interpret them: change in the number of
+cases and change in rate by country. (25%)
+
+3. Run a ml_linear_regression explaining the log of number of cases using: country, population size
+and day since the start of the pandemic. Interpret the results. (25%)
+
+4. Write up everything in an analytic notebook (pdf Rmarkdown) that shows all the syntax you used,
+the results and walk the reader through the steps of your analysis. (20%)
+
+5. Presentation, presentation, presentation: README gives overview of the project and has session info,
+report text is easy to follow, graphs are easy to understand and properly formatted. (10%)
+
+
+
+Top tips:
+• for setting up a Spark server check out chapter 2 from the reading for this unit
+• before moving the two dataset in Spark I recommend to make some changes to the data while still in
+R (this is because it’s easier to do these things using all the tidyverse commands and it might take too
+long to figure out how to do in Spark): make the data with the number of cases in long format, define
+the time variable as a date and also make another variable that says the number of days since the start
+of the data collection (this is because you can’t include date variables in ml_linear_regression but
+you can use relative time as a numerical variable). Please do all the data manipulation in Spark
+otherwise.
+• the broom package can help you get coefficients out from the regression object. The texreg package
+can make a nice table. Please note that these don’t always work as expected with the Spark objects
+and how they work depends on the version of R, sparklyR and Spark used
+
+
+# Loading libraries
+```{r}
+library(sparklyr)
+library(tidyverse)
+library(lubridate)
+library(haven)
+library(DBI)
+library(dbplot)
+library(corrr)
+```
+
+# Download, Save, and Prep the Data
+```{r}
+# Save links
+url_covid_time <- "https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv?raw=true"
+url_covid_cntry <- "https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/UID_ISO_FIPS_LookUp_Table.csv?raw=true"
+
+#Import data
+dat.global <- read_csv(url_covid_time)
+dat.uid <- read_csv(url_covid_cntry)
+
+#Connect to local Spark server
+config <- spark_config() 
+config$spark.driver.memory <- "14G"
+config$spark.executor.memory <- "8G"
+sc <- spark_connect(master = "local", version = "3.5", config = config)
+
+#Load prepped long form data from HW1
+load("C:\\Users\\Owner\\OneDrive\\Documents\\SURV675_HW3\\long_data.RData")
+dat.lo <- as.data.frame(data_long)
+
+#Send to server
+lo.spark <- copy_to(sc, dat.lo)
+uid.spark <- copy_to(sc, dat.uid)
+
+#filter to only include the data for specified countries
+filt.spark <- lo.spark %>% 
+  filter(Country_Region %in% c('United Kingdom','Japan', 'US','Brazil', 'Mexico'))
+
+#Create population sums
+pop.sum.uid <- uid.spark %>% 
+  group_by(Country_Region) %>% 
+    summarise(Population = sum(Population)) 
+
+#Join datasets
+full.pop <- inner_join(filt.spark, pop.sum.uid, by = 'Country_Region')
+
+#Number of cases and rate of cases (cases/population) by country and day
+Cases_by_Day <- full.pop %>% 
+  mutate(Date = as.Date(Date)) %>% 
+    group_by(Country_Region, Population, Date) %>%
+    summarize(Total_Cases = sum(Cases)) %>% 
+    mutate(Rate_of_Cases = Total_Cases/Population) %>% 
+      collect()
+```
+
+
+

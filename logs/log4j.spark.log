@@ -1,0 +1,834 @@
+25/05/08 16:54:39.159 nioEventLoopGroup-2-2 INFO HiveConf: Found configuration file file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/conf/hive-site.xml
+25/05/08 16:54:39.573 nioEventLoopGroup-2-2 INFO SparkContext: Running Spark version 3.5.5
+25/05/08 16:54:39.574 nioEventLoopGroup-2-2 INFO SparkContext: OS info Windows 11, 10.0, amd64
+25/05/08 16:54:39.575 nioEventLoopGroup-2-2 INFO SparkContext: Java version 1.8.0_441
+25/05/08 16:54:39.622 nioEventLoopGroup-2-2 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 16:54:39.808 nioEventLoopGroup-2-2 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 16:54:39.920 nioEventLoopGroup-2-2 INFO ResourceUtils: ==============================================================
+25/05/08 16:54:39.921 nioEventLoopGroup-2-2 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 16:54:39.922 nioEventLoopGroup-2-2 INFO ResourceUtils: ==============================================================
+25/05/08 16:54:39.924 nioEventLoopGroup-2-2 INFO SparkContext: Submitted application: sparklyr
+25/05/08 16:54:39.994 nioEventLoopGroup-2-2 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 16:54:40.034 nioEventLoopGroup-2-2 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 16:54:40.037 nioEventLoopGroup-2-2 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 16:54:40.221 nioEventLoopGroup-2-2 INFO SecurityManager: Changing view acls to: Owner
+25/05/08 16:54:40.222 nioEventLoopGroup-2-2 INFO SecurityManager: Changing modify acls to: Owner
+25/05/08 16:54:40.224 nioEventLoopGroup-2-2 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 16:54:40.225 nioEventLoopGroup-2-2 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 16:54:40.226 nioEventLoopGroup-2-2 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Owner; groups with view permissions: EMPTY; users with modify permissions: Owner; groups with modify permissions: EMPTY
+25/05/08 16:54:40.472 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'sparkDriver' on port 56956.
+25/05/08 16:54:40.541 nioEventLoopGroup-2-2 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 16:54:40.634 nioEventLoopGroup-2-2 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 16:54:40.708 nioEventLoopGroup-2-2 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 16:54:40.709 nioEventLoopGroup-2-2 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 16:54:40.715 nioEventLoopGroup-2-2 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 16:54:40.774 nioEventLoopGroup-2-2 INFO DiskBlockManager: Created local directory at C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\blockmgr-df232763-dd12-479e-9703-db8a42a3ef4d
+25/05/08 16:54:40.815 nioEventLoopGroup-2-2 INFO MemoryStore: MemoryStore started with capacity 912.3 MiB
+25/05/08 16:54:40.851 nioEventLoopGroup-2-2 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 16:54:40.856 nioEventLoopGroup-2-2 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/local]. Please check your configured local directories.
+25/05/08 16:54:41.222 nioEventLoopGroup-2-2 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+25/05/08 16:54:41.432 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 16:54:41.526 nioEventLoopGroup-2-2 INFO SparkContext: Added JAR file:/C:/Users/Owner/AppData/Local/R/win-library/4.4/sparklyr/java/sparklyr-3.5-2.12.jar at spark://127.0.0.1:56956/jars/sparklyr-3.5-2.12.jar with timestamp 1746737679555
+25/05/08 16:54:41.692 nioEventLoopGroup-2-2 INFO Executor: Starting executor ID driver on host 127.0.0.1
+25/05/08 16:54:41.693 nioEventLoopGroup-2-2 INFO Executor: OS info Windows 11, 10.0, amd64
+25/05/08 16:54:41.694 nioEventLoopGroup-2-2 INFO Executor: Java version 1.8.0_441
+25/05/08 16:54:41.710 nioEventLoopGroup-2-2 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 16:54:41.711 nioEventLoopGroup-2-2 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@e65f5b4 for default.
+25/05/08 16:54:41.737 nioEventLoopGroup-2-2 INFO Executor: Fetching spark://127.0.0.1:56956/jars/sparklyr-3.5-2.12.jar with timestamp 1746737679555
+25/05/08 16:54:41.829 nioEventLoopGroup-2-2 INFO TransportClientFactory: Successfully created connection to /127.0.0.1:56956 after 37 ms (0 ms spent in bootstraps)
+25/05/08 16:54:41.839 nioEventLoopGroup-2-2 INFO Utils: Fetching spark://127.0.0.1:56956/jars/sparklyr-3.5-2.12.jar to C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-bab6b77e-6aec-4d8c-a846-ffee7bfb3a0b\userFiles-f20a1ed9-1249-4e09-a42b-16a7199ba111\fetchFileTemp368751079409444828.tmp
+25/05/08 16:54:42.071 nioEventLoopGroup-2-2 INFO Executor: Adding file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/local/spark-bab6b77e-6aec-4d8c-a846-ffee7bfb3a0b/userFiles-f20a1ed9-1249-4e09-a42b-16a7199ba111/sparklyr-3.5-2.12.jar to class loader default
+25/05/08 16:54:42.115 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 57008.
+25/05/08 16:54:42.117 nioEventLoopGroup-2-2 INFO NettyBlockTransferService: Server created on 127.0.0.1:57008
+25/05/08 16:54:42.120 nioEventLoopGroup-2-2 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 16:54:42.140 nioEventLoopGroup-2-2 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 57008, None)
+25/05/08 16:54:42.150 dispatcher-BlockManagerMaster INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:57008 with 912.3 MiB RAM, BlockManagerId(driver, 127.0.0.1, 57008, None)
+25/05/08 16:54:42.157 nioEventLoopGroup-2-2 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 57008, None)
+25/05/08 16:54:42.161 nioEventLoopGroup-2-2 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 57008, None)
+25/05/08 16:54:42.790 nioEventLoopGroup-2-2 INFO SharedState: Setting hive.metastore.warehouse.dir ('C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive') to the value of spark.sql.warehouse.dir.
+25/05/08 16:54:42.810 nioEventLoopGroup-2-2 INFO SharedState: Warehouse path is 'file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive'.
+25/05/08 16:54:53.181 nioEventLoopGroup-2-2 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/05/08 16:54:53.794 nioEventLoopGroup-2-2 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive
+25/05/08 16:54:54.223 nioEventLoopGroup-2-2 WARN HiveConf: HiveConf of name hive.stats.jdbc.timeout does not exist
+25/05/08 16:54:54.225 nioEventLoopGroup-2-2 WARN HiveConf: HiveConf of name hive.stats.retries.wait does not exist
+25/05/08 16:54:54.227 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: Opening raw store with implementation class:org.apache.hadoop.hive.metastore.ObjectStore
+25/05/08 16:54:54.335 nioEventLoopGroup-2-2 INFO ObjectStore: ObjectStore, initialize called
+25/05/08 16:54:54.625 nioEventLoopGroup-2-2 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+25/05/08 16:54:54.629 nioEventLoopGroup-2-2 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+25/05/08 16:54:56.972 nioEventLoopGroup-2-2 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+25/05/08 16:54:59.921 nioEventLoopGroup-2-2 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+25/05/08 16:54:59.927 nioEventLoopGroup-2-2 INFO ObjectStore: Initialized ObjectStore
+25/05/08 16:55:00.066 nioEventLoopGroup-2-2 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+25/05/08 16:55:00.066 nioEventLoopGroup-2-2 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore UNKNOWN@10.0.0.88
+25/05/08 16:55:00.117 nioEventLoopGroup-2-2 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+25/05/08 16:55:00.463 nioEventLoopGroup-2-2 INFO HiveMetaStore: Added admin role in metastore
+25/05/08 16:55:00.468 nioEventLoopGroup-2-2 INFO HiveMetaStore: Added public role in metastore
+25/05/08 16:55:00.551 nioEventLoopGroup-2-2 INFO HiveMetaStore: No user is added in admin role, since config is empty
+25/05/08 16:55:00.803 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/08 16:55:00.808 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/08 16:55:00.848 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: global_temp
+25/05/08 16:55:00.848 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: global_temp	
+25/05/08 16:55:00.850 nioEventLoopGroup-2-2 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+25/05/08 16:55:00.851 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/08 16:55:00.851 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/08 16:55:00.854 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/08 16:55:00.854 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/08 16:55:00.858 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/08 16:55:00.859 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/08 16:55:01.590 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/08 16:55:01.591 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/08 16:55:01.593 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/08 16:55:01.593 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/08 16:55:01.596 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/08 16:55:01.596 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/08 22:53:17.944 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/08 22:53:21.021 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/09 02:59:09.152 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/09 02:59:19.169 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/09 02:59:29.178 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/09 02:59:39.191 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/09 02:59:49.203 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/09 02:59:52.249 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/09 02:59:52.251 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/09 02:59:52.252 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/09 02:59:52.253 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/09 02:59:52.254 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/10 10:15:27.577 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/10 10:15:37.588 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/10 10:15:47.606 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/10 10:15:57.623 executor-heartbeater WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+	at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+	at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+	at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:38)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1219)
+	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:259)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:263)
+	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:48)
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	... 13 more
+25/05/10 10:16:00.661 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/10 10:16:00.661 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/10 10:16:00.662 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/10 10:16:00.664 heartbeat-receiver-event-loop-thread WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+25/05/10 14:22:50.047 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:22:50.048 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:22:50.054 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:22:50.054 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:22:50.056 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:22:50.056 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:22:51.065 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 313.774 ms
+25/05/10 14:22:51.272 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 14:22:51.286 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 0 finished: collect at utils.scala:26, took 0.013065 s
+25/05/10 14:23:59.511 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:23:59.512 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:23:59.516 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:23:59.517 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:23:59.521 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:23:59.523 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:23:59.649 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 14:23:59.651 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 1 finished: collect at utils.scala:26, took 0.000457 s
+25/05/10 14:46:31.436 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:46:31.440 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:46:31.464 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:46:31.464 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:46:31.467 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:46:31.467 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:46:31.569 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 14:46:31.572 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 2 finished: collect at utils.scala:26, took 0.001664 s
+25/05/10 14:50:45.356 shutdown-hook-0 INFO SparkContext: Invoking stop() from shutdown hook
+25/05/10 14:50:45.360 shutdown-hook-0 INFO SparkContext: SparkContext is stopping with exitCode 0.
+25/05/10 14:50:45.442 shutdown-hook-0 INFO SparkUI: Stopped Spark web UI at http://127.0.0.1:4040
+25/05/10 14:50:45.510 dispatcher-event-loop-6 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/05/10 14:50:45.560 shutdown-hook-0 INFO MemoryStore: MemoryStore cleared
+25/05/10 14:50:45.561 shutdown-hook-0 INFO BlockManager: BlockManager stopped
+25/05/10 14:50:45.604 shutdown-hook-0 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/05/10 14:50:45.619 dispatcher-event-loop-1 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/05/10 14:50:45.639 shutdown-hook-0 INFO SparkContext: Successfully stopped SparkContext
+25/05/10 14:50:45.640 shutdown-hook-0 INFO ShutdownHookManager: Shutdown hook called
+25/05/10 14:50:45.642 shutdown-hook-0 INFO ShutdownHookManager: Deleting directory C:\Users\Owner\AppData\Local\Temp\spark-5961c3a9-a416-46ed-84d5-06a550368e60
+25/05/10 14:50:45.646 shutdown-hook-0 INFO ShutdownHookManager: Deleting directory C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-bab6b77e-6aec-4d8c-a846-ffee7bfb3a0b
+25/05/10 14:52:40.636 shutdown-hook-0 INFO ShutdownHookManager: Shutdown hook called
+25/05/10 14:52:40.650 shutdown-hook-0 INFO ShutdownHookManager: Deleting directory C:\Users\Owner\AppData\Local\Temp\spark-2a8c1515-2cd2-4682-858f-9d4d1c1d4945
+25/05/10 14:54:43.463 nioEventLoopGroup-2-2 INFO HiveConf: Found configuration file file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/conf/hive-site.xml
+25/05/10 14:54:43.685 nioEventLoopGroup-2-2 INFO SparkContext: Running Spark version 3.5.5
+25/05/10 14:54:43.685 nioEventLoopGroup-2-2 INFO SparkContext: OS info Windows 11, 10.0, amd64
+25/05/10 14:54:43.686 nioEventLoopGroup-2-2 INFO SparkContext: Java version 1.8.0_451
+25/05/10 14:54:43.709 nioEventLoopGroup-2-2 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/10 14:54:43.814 nioEventLoopGroup-2-2 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/10 14:54:43.878 nioEventLoopGroup-2-2 INFO ResourceUtils: ==============================================================
+25/05/10 14:54:43.878 nioEventLoopGroup-2-2 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/10 14:54:43.878 nioEventLoopGroup-2-2 INFO ResourceUtils: ==============================================================
+25/05/10 14:54:43.879 nioEventLoopGroup-2-2 INFO SparkContext: Submitted application: sparklyr
+25/05/10 14:54:43.914 nioEventLoopGroup-2-2 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/10 14:54:43.927 nioEventLoopGroup-2-2 INFO ResourceProfile: Limiting resource is cpu
+25/05/10 14:54:43.928 nioEventLoopGroup-2-2 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/10 14:54:44.018 nioEventLoopGroup-2-2 INFO SecurityManager: Changing view acls to: Owner
+25/05/10 14:54:44.019 nioEventLoopGroup-2-2 INFO SecurityManager: Changing modify acls to: Owner
+25/05/10 14:54:44.019 nioEventLoopGroup-2-2 INFO SecurityManager: Changing view acls groups to: 
+25/05/10 14:54:44.020 nioEventLoopGroup-2-2 INFO SecurityManager: Changing modify acls groups to: 
+25/05/10 14:54:44.020 nioEventLoopGroup-2-2 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Owner; groups with view permissions: EMPTY; users with modify permissions: Owner; groups with modify permissions: EMPTY
+25/05/10 14:54:44.135 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'sparkDriver' on port 62414.
+25/05/10 14:54:44.179 nioEventLoopGroup-2-2 INFO SparkEnv: Registering MapOutputTracker
+25/05/10 14:54:44.238 nioEventLoopGroup-2-2 INFO SparkEnv: Registering BlockManagerMaster
+25/05/10 14:54:44.275 nioEventLoopGroup-2-2 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/10 14:54:44.276 nioEventLoopGroup-2-2 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/10 14:54:44.279 nioEventLoopGroup-2-2 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/10 14:54:44.326 nioEventLoopGroup-2-2 INFO DiskBlockManager: Created local directory at C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\blockmgr-5af2298f-7707-4fba-ba2c-7a3840355ab5
+25/05/10 14:54:44.356 nioEventLoopGroup-2-2 INFO MemoryStore: MemoryStore started with capacity 912.3 MiB
+25/05/10 14:54:44.381 nioEventLoopGroup-2-2 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/10 14:54:44.385 nioEventLoopGroup-2-2 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/local]. Please check your configured local directories.
+25/05/10 14:54:44.622 nioEventLoopGroup-2-2 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+25/05/10 14:54:44.735 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/10 14:54:44.791 nioEventLoopGroup-2-2 INFO SparkContext: Added JAR file:/C:/Users/Owner/AppData/Local/R/win-library/4.4/sparklyr/java/sparklyr-3.5-2.12.jar at spark://127.0.0.1:62414/jars/sparklyr-3.5-2.12.jar with timestamp 1746903283674
+25/05/10 14:54:44.881 nioEventLoopGroup-2-2 INFO Executor: Starting executor ID driver on host 127.0.0.1
+25/05/10 14:54:44.881 nioEventLoopGroup-2-2 INFO Executor: OS info Windows 11, 10.0, amd64
+25/05/10 14:54:44.881 nioEventLoopGroup-2-2 INFO Executor: Java version 1.8.0_451
+25/05/10 14:54:44.889 nioEventLoopGroup-2-2 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/10 14:54:44.890 nioEventLoopGroup-2-2 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@4dcb97e1 for default.
+25/05/10 14:54:44.905 nioEventLoopGroup-2-2 INFO Executor: Fetching spark://127.0.0.1:62414/jars/sparklyr-3.5-2.12.jar with timestamp 1746903283674
+25/05/10 14:54:44.963 nioEventLoopGroup-2-2 INFO TransportClientFactory: Successfully created connection to /127.0.0.1:62414 after 22 ms (0 ms spent in bootstraps)
+25/05/10 14:54:44.971 nioEventLoopGroup-2-2 INFO Utils: Fetching spark://127.0.0.1:62414/jars/sparklyr-3.5-2.12.jar to C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424\fetchFileTemp635734820626443986.tmp
+25/05/10 14:54:45.103 nioEventLoopGroup-2-2 INFO Executor: Adding file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/local/spark-99673085-3b4f-4f84-b6bb-5030e52d1192/userFiles-031184a8-b586-472f-9f9e-435ec7b21424/sparklyr-3.5-2.12.jar to class loader default
+25/05/10 14:54:45.131 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 62467.
+25/05/10 14:54:45.132 nioEventLoopGroup-2-2 INFO NettyBlockTransferService: Server created on 127.0.0.1:62467
+25/05/10 14:54:45.135 nioEventLoopGroup-2-2 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/10 14:54:45.146 nioEventLoopGroup-2-2 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 62467, None)
+25/05/10 14:54:45.151 dispatcher-BlockManagerMaster INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:62467 with 912.3 MiB RAM, BlockManagerId(driver, 127.0.0.1, 62467, None)
+25/05/10 14:54:45.155 nioEventLoopGroup-2-2 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 62467, None)
+25/05/10 14:54:45.157 nioEventLoopGroup-2-2 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 62467, None)
+25/05/10 14:54:45.559 nioEventLoopGroup-2-2 INFO SharedState: Setting hive.metastore.warehouse.dir ('C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive') to the value of spark.sql.warehouse.dir.
+25/05/10 14:54:45.571 nioEventLoopGroup-2-2 INFO SharedState: Warehouse path is 'file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive'.
+25/05/10 14:54:49.933 nioEventLoopGroup-2-2 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/05/10 14:54:50.313 nioEventLoopGroup-2-2 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive
+25/05/10 14:54:50.529 nioEventLoopGroup-2-2 WARN HiveConf: HiveConf of name hive.stats.jdbc.timeout does not exist
+25/05/10 14:54:50.529 nioEventLoopGroup-2-2 WARN HiveConf: HiveConf of name hive.stats.retries.wait does not exist
+25/05/10 14:54:50.529 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: Opening raw store with implementation class:org.apache.hadoop.hive.metastore.ObjectStore
+25/05/10 14:54:50.591 nioEventLoopGroup-2-2 INFO ObjectStore: ObjectStore, initialize called
+25/05/10 14:54:50.777 nioEventLoopGroup-2-2 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+25/05/10 14:54:50.779 nioEventLoopGroup-2-2 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+25/05/10 14:54:51.999 nioEventLoopGroup-2-2 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+25/05/10 14:54:53.522 nioEventLoopGroup-2-2 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+25/05/10 14:54:53.524 nioEventLoopGroup-2-2 INFO ObjectStore: Initialized ObjectStore
+25/05/10 14:54:53.594 nioEventLoopGroup-2-2 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+25/05/10 14:54:53.594 nioEventLoopGroup-2-2 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore UNKNOWN@10.0.0.88
+25/05/10 14:54:53.620 nioEventLoopGroup-2-2 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+25/05/10 14:54:53.782 nioEventLoopGroup-2-2 INFO HiveMetaStore: Added admin role in metastore
+25/05/10 14:54:53.784 nioEventLoopGroup-2-2 INFO HiveMetaStore: Added public role in metastore
+25/05/10 14:54:53.831 nioEventLoopGroup-2-2 INFO HiveMetaStore: No user is added in admin role, since config is empty
+25/05/10 14:54:53.961 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:54:53.964 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:54:53.986 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: global_temp
+25/05/10 14:54:53.986 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: global_temp	
+25/05/10 14:54:53.987 nioEventLoopGroup-2-2 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+25/05/10 14:54:53.988 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:54:53.989 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:54:53.991 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:54:53.992 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:54:53.994 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:54:53.994 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:54:54.424 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:54:54.425 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:54:54.428 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:54:54.428 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:54:54.430 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:54:54.430 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:55:04.149 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:55:04.149 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:55:04.151 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:55:04.151 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:55:04.152 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:55:04.153 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:55:04.902 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 276.3171 ms
+25/05/10 14:55:05.076 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 14:55:05.085 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 0 finished: collect at utils.scala:26, took 0.008823 s
+25/05/10 14:58:11.950 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:58:11.953 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:58:11.974 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 14:58:11.974 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 14:58:11.978 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 14:58:11.978 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 14:58:12.090 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 14:58:12.091 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 1 finished: collect at utils.scala:26, took 0.000578 s
+25/05/10 15:00:28.533 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:00:28.539 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:00:28.557 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:00:28.557 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:00:28.562 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:00:28.562 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:00:28.728 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 15:00:28.730 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 2 finished: collect at utils.scala:26, took 0.000564 s
+25/05/10 15:00:33.407 nioEventLoopGroup-2-2 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+25/05/10 15:00:35.796 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 13.4546 ms
+25/05/10 15:00:35.854 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 15:00:35.882 dag-scheduler-event-loop INFO DAGScheduler: Got job 3 (collect at utils.scala:26) with 1 output partitions
+25/05/10 15:00:35.886 dag-scheduler-event-loop INFO DAGScheduler: Final stage: ResultStage 0 (collect at utils.scala:26)
+25/05/10 15:00:35.886 dag-scheduler-event-loop INFO DAGScheduler: Parents of final stage: List()
+25/05/10 15:00:35.888 dag-scheduler-event-loop INFO DAGScheduler: Missing parents: List()
+25/05/10 15:00:35.894 dag-scheduler-event-loop INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[13] at collect at utils.scala:26), which has no missing parents
+25/05/10 15:00:36.022 dag-scheduler-event-loop INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 84.6 KiB, free 912.2 MiB)
+25/05/10 15:00:36.532 dag-scheduler-event-loop INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 15.1 KiB, free 912.2 MiB)
+25/05/10 15:00:36.538 dispatcher-BlockManagerMaster INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 127.0.0.1:62467 (size: 15.1 KiB, free: 912.3 MiB)
+25/05/10 15:00:36.549 dag-scheduler-event-loop INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
+25/05/10 15:00:36.576 dag-scheduler-event-loop INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[13] at collect at utils.scala:26) (first 15 tasks are for partitions Vector(0))
+25/05/10 15:00:36.579 dag-scheduler-event-loop INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/05/10 15:00:36.654 dispatcher-event-loop-2 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (127.0.0.1, executor driver, partition 0, PROCESS_LOCAL, 9384 bytes) 
+25/05/10 15:00:36.675 Executor task launch worker for task 0.0 in stage 0.0 (TID 0) INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+25/05/10 15:00:37.252 Executor task launch worker for task 0.0 in stage 0.0 (TID 0) INFO CodeGenerator: Code generated in 209.7752 ms
+25/05/10 15:00:37.601 Executor task launch worker for task 0.0 in stage 0.0 (TID 0) INFO CodeGenerator: Code generated in 210.3463 ms
+25/05/10 15:00:37.649 Executor task launch worker for task 0.0 in stage 0.0 (TID 0) INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1524 bytes result sent to driver
+25/05/10 15:00:37.664 task-result-getter-0 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1021 ms on 127.0.0.1 (executor driver) (1/1)
+25/05/10 15:00:37.666 task-result-getter-0 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/05/10 15:00:37.696 dag-scheduler-event-loop INFO DAGScheduler: ResultStage 0 (collect at utils.scala:26) finished in 1.776 s
+25/05/10 15:00:37.699 dag-scheduler-event-loop INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+25/05/10 15:00:37.699 dag-scheduler-event-loop INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/05/10 15:00:37.700 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 3 finished: collect at utils.scala:26, took 1.846174 s
+25/05/10 15:00:38.058 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 256.5325 ms
+25/05/10 15:00:42.449 dispatcher-BlockManagerMaster INFO BlockManagerInfo: Removed broadcast_0_piece0 on 127.0.0.1:62467 in memory (size: 15.1 KiB, free: 912.3 MiB)
+25/05/10 15:00:42.654 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 15:00:42.655 dag-scheduler-event-loop INFO DAGScheduler: Got job 4 (collect at utils.scala:26) with 1 output partitions
+25/05/10 15:00:42.656 dag-scheduler-event-loop INFO DAGScheduler: Final stage: ResultStage 1 (collect at utils.scala:26)
+25/05/10 15:00:42.656 dag-scheduler-event-loop INFO DAGScheduler: Parents of final stage: List()
+25/05/10 15:00:42.656 dag-scheduler-event-loop INFO DAGScheduler: Missing parents: List()
+25/05/10 15:00:42.658 dag-scheduler-event-loop INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[16] at collect at utils.scala:26), which has no missing parents
+25/05/10 15:00:42.663 dag-scheduler-event-loop INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 84.6 KiB, free 912.2 MiB)
+25/05/10 15:00:42.666 dag-scheduler-event-loop INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 15.1 KiB, free 912.2 MiB)
+25/05/10 15:00:42.667 dispatcher-BlockManagerMaster INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 127.0.0.1:62467 (size: 15.1 KiB, free: 912.3 MiB)
+25/05/10 15:00:42.668 dag-scheduler-event-loop INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1585
+25/05/10 15:00:42.669 dag-scheduler-event-loop INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[16] at collect at utils.scala:26) (first 15 tasks are for partitions Vector(0))
+25/05/10 15:00:42.669 dag-scheduler-event-loop INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+25/05/10 15:00:42.671 dispatcher-event-loop-6 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (127.0.0.1, executor driver, partition 0, PROCESS_LOCAL, 9384 bytes) 
+25/05/10 15:00:42.672 Executor task launch worker for task 0.0 in stage 1.0 (TID 1) INFO Executor: Running task 0.0 in stage 1.0 (TID 1)
+25/05/10 15:00:42.740 Executor task launch worker for task 0.0 in stage 1.0 (TID 1) INFO Executor: Finished task 0.0 in stage 1.0 (TID 1). 1481 bytes result sent to driver
+25/05/10 15:00:42.744 task-result-getter-1 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 72 ms on 127.0.0.1 (executor driver) (1/1)
+25/05/10 15:00:42.744 task-result-getter-1 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/05/10 15:00:42.745 dag-scheduler-event-loop INFO DAGScheduler: ResultStage 1 (collect at utils.scala:26) finished in 0.086 s
+25/05/10 15:00:42.745 dag-scheduler-event-loop INFO DAGScheduler: Job 4 is finished. Cancelling potential speculative or zombie tasks for this job
+25/05/10 15:00:42.745 dag-scheduler-event-loop INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+25/05/10 15:00:42.746 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 4 finished: collect at utils.scala:26, took 0.090418 s
+25/05/10 15:00:52.058 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:00:52.058 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:00:52.060 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:00:52.061 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:00:52.062 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:00:52.062 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:00:52.179 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 60.6019 ms
+25/05/10 15:00:52.219 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 8.8309 ms
+25/05/10 15:00:52.241 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 12.2443 ms
+25/05/10 15:01:07.865 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:01:07.866 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:01:07.873 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:01:07.874 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:01:07.876 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:01:07.877 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:01:07.919 dispatcher-BlockManagerMaster INFO BlockManagerInfo: Removed broadcast_1_piece0 on 127.0.0.1:62467 in memory (size: 15.1 KiB, free: 912.3 MiB)
+25/05/10 15:01:08.683 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:01:08.684 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:01:08.685 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:01:08.686 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:01:08.687 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:01:08.687 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:02:02.276 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:02:02.276 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:02:02.279 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:02:02.279 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:02:02.281 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:02:02.281 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:03:04.322 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:03:04.322 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:03:04.323 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:03:04.324 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:03:04.326 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:03:04.326 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:03:13.149 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:03:13.150 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:03:13.151 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:03:13.151 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:03:13.153 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:03:13.153 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:03:13.209 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 15:03:13.210 dag-scheduler-event-loop INFO DAGScheduler: Got job 5 (collect at utils.scala:26) with 1 output partitions
+25/05/10 15:03:13.210 dag-scheduler-event-loop INFO DAGScheduler: Final stage: ResultStage 2 (collect at utils.scala:26)
+25/05/10 15:03:13.210 dag-scheduler-event-loop INFO DAGScheduler: Parents of final stage: List()
+25/05/10 15:03:13.211 dag-scheduler-event-loop INFO DAGScheduler: Missing parents: List()
+25/05/10 15:03:13.212 dag-scheduler-event-loop INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[19] at collect at utils.scala:26), which has no missing parents
+25/05/10 15:03:13.217 dag-scheduler-event-loop INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 7.5 KiB, free 912.3 MiB)
+25/05/10 15:03:13.220 dag-scheduler-event-loop INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 3.8 KiB, free 912.3 MiB)
+25/05/10 15:03:13.221 dispatcher-BlockManagerMaster INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 127.0.0.1:62467 (size: 3.8 KiB, free: 912.3 MiB)
+25/05/10 15:03:13.222 dag-scheduler-event-loop INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1585
+25/05/10 15:03:13.222 dag-scheduler-event-loop INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[19] at collect at utils.scala:26) (first 15 tasks are for partitions Vector(0))
+25/05/10 15:03:13.222 dag-scheduler-event-loop INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks resource profile 0
+25/05/10 15:03:13.225 dispatcher-event-loop-0 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2) (127.0.0.1, executor driver, partition 0, PROCESS_LOCAL, 9420 bytes) 
+25/05/10 15:03:13.227 Executor task launch worker for task 0.0 in stage 2.0 (TID 2) INFO Executor: Running task 0.0 in stage 2.0 (TID 2)
+25/05/10 15:03:13.240 Executor task launch worker for task 0.0 in stage 2.0 (TID 2) INFO CodeGenerator: Code generated in 8.5217 ms
+25/05/10 15:03:13.244 Executor task launch worker for task 0.0 in stage 2.0 (TID 2) INFO Executor: Finished task 0.0 in stage 2.0 (TID 2). 1476 bytes result sent to driver
+25/05/10 15:03:13.248 task-result-getter-2 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 25 ms on 127.0.0.1 (executor driver) (1/1)
+25/05/10 15:03:13.249 task-result-getter-2 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+25/05/10 15:03:13.250 dag-scheduler-event-loop INFO DAGScheduler: ResultStage 2 (collect at utils.scala:26) finished in 0.036 s
+25/05/10 15:03:13.250 dag-scheduler-event-loop INFO DAGScheduler: Job 5 is finished. Cancelling potential speculative or zombie tasks for this job
+25/05/10 15:03:13.251 dag-scheduler-event-loop INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage finished
+25/05/10 15:03:13.251 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 5 finished: collect at utils.scala:26, took 0.041246 s
+25/05/10 15:03:13.258 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 5.8395 ms
+25/05/10 15:08:47.004 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:08:47.010 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:08:47.031 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:08:47.031 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:08:47.034 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:08:47.034 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:08:47.147 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:08:47.147 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:08:47.149 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:08:47.149 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:08:47.151 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:08:47.151 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:11:46.255 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:11:46.256 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:11:46.269 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_table : db=default tbl=lo_spark
+25/05/10 15:11:46.269 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_table : db=default tbl=lo_spark	
+25/05/10 15:15:14.233 shutdown-hook-0 INFO SparkContext: Invoking stop() from shutdown hook
+25/05/10 15:15:14.236 shutdown-hook-0 INFO SparkContext: SparkContext is stopping with exitCode 0.
+25/05/10 15:15:14.351 shutdown-hook-0 INFO SparkUI: Stopped Spark web UI at http://127.0.0.1:4040
+25/05/10 15:15:14.446 dispatcher-event-loop-3 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/05/10 15:15:14.522 shutdown-hook-0 INFO MemoryStore: MemoryStore cleared
+25/05/10 15:15:14.523 shutdown-hook-0 INFO BlockManager: BlockManager stopped
+25/05/10 15:15:14.533 shutdown-hook-0 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/05/10 15:15:14.546 dispatcher-event-loop-11 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/05/10 15:15:14.571 shutdown-hook-0 WARN SparkEnv: Exception while deleting Spark temp dir: C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424
+java.io.IOException: Failed to delete: C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424\sparklyr-3.5-2.12.jar
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:147)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:130)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:90)
+	at org.apache.spark.util.SparkFileUtils.deleteRecursively(SparkFileUtils.scala:121)
+	at org.apache.spark.util.SparkFileUtils.deleteRecursively$(SparkFileUtils.scala:120)
+	at org.apache.spark.util.Utils$.deleteRecursively(Utils.scala:1126)
+	at org.apache.spark.SparkEnv.stop(SparkEnv.scala:108)
+	at org.apache.spark.SparkContext.$anonfun$stop$25(SparkContext.scala:2305)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1375)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2305)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2211)
+	at org.apache.spark.SparkContext.$anonfun$new$34(SparkContext.scala:681)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:214)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$2(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$1(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+25/05/10 15:15:14.581 shutdown-hook-0 INFO SparkContext: Successfully stopped SparkContext
+25/05/10 15:15:14.583 shutdown-hook-0 INFO ShutdownHookManager: Shutdown hook called
+25/05/10 15:15:14.584 shutdown-hook-0 INFO ShutdownHookManager: Deleting directory C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192
+25/05/10 15:15:14.590 shutdown-hook-0 ERROR ShutdownHookManager: Exception while deleting Spark temp dir: C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192
+java.io.IOException: Failed to delete: C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424\sparklyr-3.5-2.12.jar
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:147)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:130)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:130)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:90)
+	at org.apache.spark.util.SparkFileUtils.deleteRecursively(SparkFileUtils.scala:121)
+	at org.apache.spark.util.SparkFileUtils.deleteRecursively$(SparkFileUtils.scala:120)
+	at org.apache.spark.util.Utils$.deleteRecursively(Utils.scala:1126)
+	at org.apache.spark.util.ShutdownHookManager$.$anonfun$new$4(ShutdownHookManager.scala:65)
+	at org.apache.spark.util.ShutdownHookManager$.$anonfun$new$4$adapted(ShutdownHookManager.scala:62)
+	at scala.collection.IndexedSeqOptimized.foreach(IndexedSeqOptimized.scala:36)
+	at scala.collection.IndexedSeqOptimized.foreach$(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:198)
+	at org.apache.spark.util.ShutdownHookManager$.$anonfun$new$2(ShutdownHookManager.scala:62)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:214)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$2(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$1(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+25/05/10 15:15:14.592 shutdown-hook-0 INFO ShutdownHookManager: Deleting directory C:\Users\Owner\AppData\Local\Temp\spark-b514799a-1171-4a3f-8c1e-655f03ce45cb
+25/05/10 15:15:14.596 shutdown-hook-0 INFO ShutdownHookManager: Deleting directory C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424
+25/05/10 15:15:14.601 shutdown-hook-0 ERROR ShutdownHookManager: Exception while deleting Spark temp dir: C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424
+java.io.IOException: Failed to delete: C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-99673085-3b4f-4f84-b6bb-5030e52d1192\userFiles-031184a8-b586-472f-9f9e-435ec7b21424\sparklyr-3.5-2.12.jar
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:147)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:130)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:117)
+	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:90)
+	at org.apache.spark.util.SparkFileUtils.deleteRecursively(SparkFileUtils.scala:121)
+	at org.apache.spark.util.SparkFileUtils.deleteRecursively$(SparkFileUtils.scala:120)
+	at org.apache.spark.util.Utils$.deleteRecursively(Utils.scala:1126)
+	at org.apache.spark.util.ShutdownHookManager$.$anonfun$new$4(ShutdownHookManager.scala:65)
+	at org.apache.spark.util.ShutdownHookManager$.$anonfun$new$4$adapted(ShutdownHookManager.scala:62)
+	at scala.collection.IndexedSeqOptimized.foreach(IndexedSeqOptimized.scala:36)
+	at scala.collection.IndexedSeqOptimized.foreach$(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:198)
+	at org.apache.spark.util.ShutdownHookManager$.$anonfun$new$2(ShutdownHookManager.scala:62)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:214)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$2(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$1(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+25/05/10 15:17:09.700 nioEventLoopGroup-2-2 INFO HiveConf: Found configuration file file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/conf/hive-site.xml
+25/05/10 15:17:09.926 nioEventLoopGroup-2-2 INFO SparkContext: Running Spark version 3.5.5
+25/05/10 15:17:09.927 nioEventLoopGroup-2-2 INFO SparkContext: OS info Windows 11, 10.0, amd64
+25/05/10 15:17:09.927 nioEventLoopGroup-2-2 INFO SparkContext: Java version 1.8.0_451
+25/05/10 15:17:09.957 nioEventLoopGroup-2-2 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/10 15:17:10.061 nioEventLoopGroup-2-2 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/10 15:17:10.134 nioEventLoopGroup-2-2 INFO ResourceUtils: ==============================================================
+25/05/10 15:17:10.135 nioEventLoopGroup-2-2 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/10 15:17:10.135 nioEventLoopGroup-2-2 INFO ResourceUtils: ==============================================================
+25/05/10 15:17:10.136 nioEventLoopGroup-2-2 INFO SparkContext: Submitted application: sparklyr
+25/05/10 15:17:10.171 nioEventLoopGroup-2-2 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 8192, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/10 15:17:10.183 nioEventLoopGroup-2-2 INFO ResourceProfile: Limiting resource is cpu
+25/05/10 15:17:10.185 nioEventLoopGroup-2-2 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/10 15:17:10.278 nioEventLoopGroup-2-2 INFO SecurityManager: Changing view acls to: Owner
+25/05/10 15:17:10.278 nioEventLoopGroup-2-2 INFO SecurityManager: Changing modify acls to: Owner
+25/05/10 15:17:10.278 nioEventLoopGroup-2-2 INFO SecurityManager: Changing view acls groups to: 
+25/05/10 15:17:10.279 nioEventLoopGroup-2-2 INFO SecurityManager: Changing modify acls groups to: 
+25/05/10 15:17:10.279 nioEventLoopGroup-2-2 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Owner; groups with view permissions: EMPTY; users with modify permissions: Owner; groups with modify permissions: EMPTY
+25/05/10 15:17:10.408 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'sparkDriver' on port 63544.
+25/05/10 15:17:10.454 nioEventLoopGroup-2-2 INFO SparkEnv: Registering MapOutputTracker
+25/05/10 15:17:10.510 nioEventLoopGroup-2-2 INFO SparkEnv: Registering BlockManagerMaster
+25/05/10 15:17:10.549 nioEventLoopGroup-2-2 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/10 15:17:10.550 nioEventLoopGroup-2-2 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/10 15:17:10.554 nioEventLoopGroup-2-2 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/10 15:17:10.591 nioEventLoopGroup-2-2 INFO DiskBlockManager: Created local directory at C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\blockmgr-6ac91192-c637-467d-902c-3db276c08fbb
+25/05/10 15:17:10.617 nioEventLoopGroup-2-2 INFO MemoryStore: MemoryStore started with capacity 912.3 MiB
+25/05/10 15:17:10.640 nioEventLoopGroup-2-2 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/10 15:17:10.644 nioEventLoopGroup-2-2 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/local]. Please check your configured local directories.
+25/05/10 15:17:10.866 nioEventLoopGroup-2-2 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+25/05/10 15:17:10.976 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/10 15:17:11.027 nioEventLoopGroup-2-2 INFO SparkContext: Added JAR file:/C:/Users/Owner/AppData/Local/R/win-library/4.4/sparklyr/java/sparklyr-3.5-2.12.jar at spark://127.0.0.1:63544/jars/sparklyr-3.5-2.12.jar with timestamp 1746904629917
+25/05/10 15:17:11.129 nioEventLoopGroup-2-2 INFO Executor: Starting executor ID driver on host 127.0.0.1
+25/05/10 15:17:11.129 nioEventLoopGroup-2-2 INFO Executor: OS info Windows 11, 10.0, amd64
+25/05/10 15:17:11.129 nioEventLoopGroup-2-2 INFO Executor: Java version 1.8.0_451
+25/05/10 15:17:11.138 nioEventLoopGroup-2-2 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/10 15:17:11.138 nioEventLoopGroup-2-2 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@792b1f3c for default.
+25/05/10 15:17:11.162 nioEventLoopGroup-2-2 INFO Executor: Fetching spark://127.0.0.1:63544/jars/sparklyr-3.5-2.12.jar with timestamp 1746904629917
+25/05/10 15:17:11.218 nioEventLoopGroup-2-2 INFO TransportClientFactory: Successfully created connection to /127.0.0.1:63544 after 21 ms (0 ms spent in bootstraps)
+25/05/10 15:17:11.225 nioEventLoopGroup-2-2 INFO Utils: Fetching spark://127.0.0.1:63544/jars/sparklyr-3.5-2.12.jar to C:\Users\Owner\AppData\Local\spark\spark-3.5.5-bin-hadoop3\tmp\local\spark-2da54ed1-303c-405e-ac6f-68fdbda8994f\userFiles-5db0f540-a213-4759-b52f-fe9dc8725486\fetchFileTemp7834755901112098736.tmp
+25/05/10 15:17:11.347 nioEventLoopGroup-2-2 INFO Executor: Adding file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/local/spark-2da54ed1-303c-405e-ac6f-68fdbda8994f/userFiles-5db0f540-a213-4759-b52f-fe9dc8725486/sparklyr-3.5-2.12.jar to class loader default
+25/05/10 15:17:11.376 nioEventLoopGroup-2-2 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 63596.
+25/05/10 15:17:11.376 nioEventLoopGroup-2-2 INFO NettyBlockTransferService: Server created on 127.0.0.1:63596
+25/05/10 15:17:11.378 nioEventLoopGroup-2-2 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/10 15:17:11.390 nioEventLoopGroup-2-2 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 63596, None)
+25/05/10 15:17:11.396 dispatcher-BlockManagerMaster INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:63596 with 912.3 MiB RAM, BlockManagerId(driver, 127.0.0.1, 63596, None)
+25/05/10 15:17:11.400 nioEventLoopGroup-2-2 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 63596, None)
+25/05/10 15:17:11.402 nioEventLoopGroup-2-2 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 63596, None)
+25/05/10 15:17:11.865 nioEventLoopGroup-2-2 INFO SharedState: Setting hive.metastore.warehouse.dir ('C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive') to the value of spark.sql.warehouse.dir.
+25/05/10 15:17:11.874 nioEventLoopGroup-2-2 INFO SharedState: Warehouse path is 'file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive'.
+25/05/10 15:17:16.244 nioEventLoopGroup-2-2 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/05/10 15:17:16.663 nioEventLoopGroup-2-2 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/tmp/hive
+25/05/10 15:17:16.880 nioEventLoopGroup-2-2 WARN HiveConf: HiveConf of name hive.stats.jdbc.timeout does not exist
+25/05/10 15:17:16.880 nioEventLoopGroup-2-2 WARN HiveConf: HiveConf of name hive.stats.retries.wait does not exist
+25/05/10 15:17:16.880 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: Opening raw store with implementation class:org.apache.hadoop.hive.metastore.ObjectStore
+25/05/10 15:17:16.976 nioEventLoopGroup-2-2 INFO ObjectStore: ObjectStore, initialize called
+25/05/10 15:17:17.208 nioEventLoopGroup-2-2 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+25/05/10 15:17:17.210 nioEventLoopGroup-2-2 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+25/05/10 15:17:18.441 nioEventLoopGroup-2-2 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+25/05/10 15:17:20.121 nioEventLoopGroup-2-2 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+25/05/10 15:17:20.123 nioEventLoopGroup-2-2 INFO ObjectStore: Initialized ObjectStore
+25/05/10 15:17:20.189 nioEventLoopGroup-2-2 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+25/05/10 15:17:20.190 nioEventLoopGroup-2-2 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore UNKNOWN@10.0.0.88
+25/05/10 15:17:20.219 nioEventLoopGroup-2-2 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+25/05/10 15:17:20.381 nioEventLoopGroup-2-2 INFO HiveMetaStore: Added admin role in metastore
+25/05/10 15:17:20.383 nioEventLoopGroup-2-2 INFO HiveMetaStore: Added public role in metastore
+25/05/10 15:17:20.430 nioEventLoopGroup-2-2 INFO HiveMetaStore: No user is added in admin role, since config is empty
+25/05/10 15:17:20.553 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:20.556 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:20.577 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: global_temp
+25/05/10 15:17:20.577 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: global_temp	
+25/05/10 15:17:20.578 nioEventLoopGroup-2-2 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+25/05/10 15:17:20.578 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:20.578 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:20.580 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:20.581 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:20.582 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:17:20.582 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:17:21.098 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:21.099 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:21.101 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:21.102 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:21.105 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:17:21.105 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:17:42.721 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:42.722 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:42.725 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_database: default
+25/05/10 15:17:42.726 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_database: default	
+25/05/10 15:17:42.729 nioEventLoopGroup-2-2 INFO HiveMetaStore: 0: get_tables: db=default pat=*
+25/05/10 15:17:42.729 nioEventLoopGroup-2-2 INFO audit: ugi=Owner	ip=unknown-ip-addr	cmd=get_tables: db=default pat=*	
+25/05/10 15:17:43.514 nioEventLoopGroup-2-2 INFO CodeGenerator: Code generated in 299.3291 ms
+25/05/10 15:17:43.779 nioEventLoopGroup-2-2 INFO SparkContext: Starting job: collect at utils.scala:26
+25/05/10 15:17:43.790 nioEventLoopGroup-2-2 INFO DAGScheduler: Job 0 finished: collect at utils.scala:26, took 0.010585 s
