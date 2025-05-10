@@ -145,16 +145,71 @@ library(dbplot)
 library(corrr)
 ```
 
+```{r}
+uid_table <- read.csv("C:\\Users\\Owner\\Downloads\\UID_ISO_FIPS_LookUp_Table.csv")
+time_series <- read_csv("C:\\Users\\Owner\\Downloads\\time_series_covid19_confirmed_global.csv") 
+```
+
+```{r} 
+#Create a Working Copy of the Data and Pivot it
+time_long <- time_series %>% 
+  pivot_longer(
+    cols = !(1:4), 
+    names_to = "Date", 
+    values_to = "Confirmed_COVID_Cases"
+  )
+
+#Making R Read the "Date" column as actual dates
+time_long <- time_long %>%
+  mutate( 
+    Date = lubridate::mdy(time_long$Date)
+    )
+  
+time_long$Days <- as.numeric(time_long$Date - min(time_long$Date)) + 1
+
+rm(time_series)
+```
+
+```{r}
+#Connect to local Spark server
+config <- spark_config() 
+config$spark.driver.memory <- "14G"
+config$spark.executor.memory <- "8G"
+sc <- spark_connect(master = "local", version = "3.5", config = config)
+
+#Send to server
+uid_spark <- copy_to(sc, uid_table)
+time_spark <- copy_to(sc, time_long)
+
+
+#filter to only include the data for specified countries 
+dat.filt <- dat.lo %>% 
+  filter(Country_Region %in% c('United Kingdom','Japan', 'US','Brazil', 'Mexico'))
+#Despite specifying the configuration, the full long dataframe was not able to be copied to spark. Had to filter it first. 
+
+
+
+```
+
+```{r}
+#Create a Working Copy of the Data and Change Variable Names to Match
+uid_long <- uid_table %>% 
+  rename("Long" = "Long_",
+         "Province/State" = "Province_State", 
+         "Country/Region" = "Country_Region")
+
+#Recoding blank cells to have NA
+uid_long <- uid_long %>%
+  mutate(`Province/State` = ifelse(`Province/State` == "", NA, `Province/State`), 
+         `Admin2` = ifelse(`Admin2` == "", NA, `Admin2`))
+
+#Joining Dataframes, creating the long form dataset
+full_long <- uid_long %>%
+  left_join(time_long, by = c("Province/State", "Country/Region", "Lat", "Long")) 
+```
+
 # Download, Save, and Prep the Data
 ```{r}
-# Save links
-url_covid_time <- "https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv?raw=true"
-url_covid_cntry <- "https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/UID_ISO_FIPS_LookUp_Table.csv?raw=true"
-
-#Import data
-dat.global <- read_csv(url_covid_time)
-dat.uid <- read_csv(url_covid_cntry)
-
 #Connect to local Spark server
 config <- spark_config() 
 config$spark.driver.memory <- "14G"
@@ -162,24 +217,26 @@ config$spark.executor.memory <- "8G"
 sc <- spark_connect(master = "local", version = "3.5", config = config)
 
 #Load prepped long form data from HW1
-load("C:\\Users\\Owner\\OneDrive\\Documents\\SURV675_HW3\\long_data.RData")
+
 dat.lo <- as.data.frame(data_long)
 
-#Send to server
-lo.spark <- copy_to(sc, dat.lo)
-uid.spark <- copy_to(sc, dat.uid)
-
-#filter to only include the data for specified countries
-filt.spark <- lo.spark %>% 
+#filter to only include the data for specified countries 
+dat.filt <- dat.lo %>% 
   filter(Country_Region %in% c('United Kingdom','Japan', 'US','Brazil', 'Mexico'))
+#Despite specifying the configuration, the full long dataframe was not able to be copied to spark. Had to filter it first. 
+
+#Send to server
+uid.spark <- copy_to(sc, dat.uid)
+lo.spark <- copy_to(sc, dat.filt)
 
 #Create population sums
 pop.sum.uid <- uid.spark %>% 
   group_by(Country_Region) %>% 
-    summarise(Population = sum(Population)) 
+    summarise(Population = sum(Population)) %>% 
+      collect()
 
 #Join datasets
-full.pop <- inner_join(filt.spark, pop.sum.uid, by = 'Country_Region')
+full.pop <- inner_join(lo.spark, pop.sum.uid, by = 'Country_Region')
 
 #Number of cases and rate of cases (cases/population) by country and day
 Cases_by_Day <- full.pop %>% 
