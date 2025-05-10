@@ -145,12 +145,12 @@ library(dbplot)
 library(corrr)
 ```
 
+# Download, Save, and Prep the Data
 ```{r}
+#Read in CSV files
 uid_table <- read.csv("C:\\Users\\Owner\\Downloads\\UID_ISO_FIPS_LookUp_Table.csv")
 time_series <- read_csv("C:\\Users\\Owner\\Downloads\\time_series_covid19_confirmed_global.csv") 
-```
-
-```{r} 
+ 
 #Create a Working Copy of the Data and Pivot it
 time_long <- time_series %>% 
   pivot_longer(
@@ -164,9 +164,11 @@ time_long <- time_long %>%
   mutate( 
     Date = lubridate::mdy(time_long$Date)
     )
-  
+
+#Creating the "number of days since start" variable
 time_long$Days <- as.numeric(time_long$Date - min(time_long$Date)) + 1
 
+#Removing unnecessary information from environment 
 rm(time_series)
 ```
 
@@ -176,76 +178,60 @@ config <- spark_config()
 config$spark.driver.memory <- "14G"
 config$spark.executor.memory <- "8G"
 sc <- spark_connect(master = "local", version = "3.5", config = config)
+```
 
+```{r}
 #Send to server
-uid_spark <- copy_to(sc, uid_table)
+uid_spark <- copy_to(sc, uid_table, overwrite = TRUE)
 time_spark <- copy_to(sc, time_long)
 
-
 #filter to only include the data for specified countries 
-dat.filt <- dat.lo %>% 
-  filter(Country_Region %in% c('United Kingdom','Japan', 'US','Brazil', 'Mexico'))
-#Despite specifying the configuration, the full long dataframe was not able to be copied to spark. Had to filter it first. 
+filtered_spark <- time_spark %>% 
+  filter(CountryRegion %in% c("United Kingdom"," Japan", "US", "Brazil", "Mexico")) %>% 
+    collect()
 
-
-
-```
-
-```{r}
-#Create a Working Copy of the Data and Change Variable Names to Match
-uid_long <- uid_table %>% 
+#renaming so match
+uid_spark <- uid_spark %>% 
   rename("Long" = "Long_",
-         "Province/State" = "Province_State", 
-         "Country/Region" = "Country_Region")
+         "ProvinceState" = "Province_State", 
+         "CountryRegion" = "Country_Region") %>% 
+    collect()
 
 #Recoding blank cells to have NA
-uid_long <- uid_long %>%
-  mutate(`Province/State` = ifelse(`Province/State` == "", NA, `Province/State`), 
-         `Admin2` = ifelse(`Admin2` == "", NA, `Admin2`))
-
-#Joining Dataframes, creating the long form dataset
-full_long <- uid_long %>%
-  left_join(time_long, by = c("Province/State", "Country/Region", "Lat", "Long")) 
-```
-
-# Download, Save, and Prep the Data
-```{r}
-#Connect to local Spark server
-config <- spark_config() 
-config$spark.driver.memory <- "14G"
-config$spark.executor.memory <- "8G"
-sc <- spark_connect(master = "local", version = "3.5", config = config)
-
-#Load prepped long form data from HW1
-
-dat.lo <- as.data.frame(data_long)
-
-#filter to only include the data for specified countries 
-dat.filt <- dat.lo %>% 
-  filter(Country_Region %in% c('United Kingdom','Japan', 'US','Brazil', 'Mexico'))
-#Despite specifying the configuration, the full long dataframe was not able to be copied to spark. Had to filter it first. 
-
-#Send to server
-uid.spark <- copy_to(sc, dat.uid)
-lo.spark <- copy_to(sc, dat.filt)
+uid_spark <- uid_spark %>%
+  mutate(`ProvinceState` = ifelse(`ProvinceState` == "", NA, `ProvinceState`), 
+         `Admin2` = ifelse(`Admin2` == "", NA, `Admin2`)) %>% 
+    collect()
 
 #Create population sums
-pop.sum.uid <- uid.spark %>% 
-  group_by(Country_Region) %>% 
-    summarise(Population = sum(Population)) %>% 
+uid_pop <- uid_spark %>% 
+    filter(CountryRegion %in% c("Brazil", "Japan", "Mexico", "US", "United Kingdom")) %>% 
+    collect()
+pop_sum <- uid_pop %>%
+  group_by(CountryRegion) %>% 
+    summarise(Population = sum(Population, na.rm = TRUE)) %>% 
       collect()
 
 #Join datasets
-full.pop <- inner_join(lo.spark, pop.sum.uid, by = 'Country_Region')
+full_pop <- filtered_spark %>% 
+  inner_join(pop_sum, by = "CountryRegion") %>% 
+  collect()
 
-#Number of cases and rate of cases (cases/population) by country and day
-Cases_by_Day <- full.pop %>% 
-  mutate(Date = as.Date(Date)) %>% 
-    group_by(Country_Region, Population, Date) %>%
-    summarize(Total_Cases = sum(Cases)) %>% 
+#Number of cases and rate of cases by country and day
+Cases_by_Day <- full_pop %>%  
+    group_by(CountryRegion, Population, Date) %>%
+    summarize(Total_Cases = sum(Confirmed_COVID_Cases)) %>% 
     mutate(Rate_of_Cases = Total_Cases/Population) %>% 
       collect()
 ```
+
+# Data Visualization
+```{r}
+
+```
+
+
+
 
 
 
