@@ -1,59 +1,13 @@
 ---
-title: "Assignment3"
-output: html_document
+title: 'SURV675: Assignment 3'
+author: "Riki Engling"
+date: "2025-05-08"
+output: 
+  html_document:
+          keep_md: true
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
-
-Disconnect before rendering
-
-
-
-
-#########################################################################################################
-In this assignment you are going to produce an analytic notebook looking at the change in time in the
-number of covid cases. An analytically notebook is slightly different from what you submitted last time. It
-typically includes all the code and results and walks the reader through all the steps of your analysis. These
-are very useful for work in progress and for communicating with colleagues who know programming/stats.
-You are going to use the data from the first assignment with as spin on it. You will use a local Spark server
-for some of the activities and then write your report.
-Your submission will again be a GitHub repo that will include the README and the analytical
-report.
-
-
-
-1. Set up a local Spark server and add the two datasets you used in the first assignment from their GitHub
-repository. (20%)
-
-2. In Spark, merge the two datasets, make a smaller version that includes only: Germany, China,
-Japan, United Kingdom, US, Brazil, Mexico and calculate the number of cases and rate of cases
-(cases/population) by country and day. Do two graphs and interpret them: change in the number of
-cases and change in rate by country. (25%)
-
-3. Run a ml_linear_regression explaining the log of number of cases using: country, population size
-and day since the start of the pandemic. Interpret the results. (25%)
-
-4. Write up everything in an analytic notebook (pdf Rmarkdown) that shows all the syntax you used,
-the results and walk the reader through the steps of your analysis. (20%)
-
-5. Presentation, presentation, presentation: README gives overview of the project and has session info,
-report text is easy to follow, graphs are easy to understand and properly formatted. (10%)
-
-
-
-Top tips:
-• for setting up a Spark server check out chapter 2 from the reading for this unit
-• before moving the two dataset in Spark I recommend to make some changes to the data while still in
-R (this is because it’s easier to do these things using all the tidyverse commands and it might take too
-long to figure out how to do in Spark): make the data with the number of cases in long format, define
-the time variable as a date and also make another variable that says the number of days since the start
-of the data collection (this is because you can’t include date variables in ml_linear_regression but
-you can use relative time as a numerical variable). Please do all the data manipulation in Spark
-otherwise.
-• the broom package can help you get coefficients out from the regression object. The texreg package
-can make a nice table. Please note that these don’t always work as expected with the Spark objects
-and how they work depends on the version of R, sparklyR and Spark used
-
 
 # Loading libraries
 ```{r}
@@ -66,7 +20,7 @@ library(dbplot)
 library(corrr)
 ```
 
-# Download, Save, and Prep the Data
+# Load, Save, and Prep the Data
 ```{r}
 #Read in CSV files
 uid_table <- read.csv("C:\\Users\\Owner\\Downloads\\UID_ISO_FIPS_LookUp_Table.csv")
@@ -83,75 +37,77 @@ time_long <- time_series %>%
 #Making R Read the "Date" column as actual dates
 time_long <- time_long %>%
   mutate( 
-    Date = lubridate::mdy(time_long$Date)
-    )
+    Date = lubridate::mdy(time_long$Date))
 
 #Creating the "number of days since start" variable
 time_long$Days <- as.numeric(time_long$Date - min(time_long$Date)) + 1
-
-#Removing unnecessary information from environment 
-rm(time_series)
 ```
 
+## Connect to local Spark server
 ```{r}
-#Connect to local Spark server
+#Specify configuration settings due to my computer struggling
 config <- spark_config() 
+
+#Increasing memory of driver and executor
 config$spark.driver.memory <- "14G"
 config$spark.executor.memory <- "8G"
+
+#Connect to server
 sc <- spark_connect(master = "local", version = "3.5", config = config)
 ```
 
+## Move data to Spark
 ```{r}
 #Send to server
 uid_spark <- copy_to(sc, uid_table)
 time_spark <- copy_to(sc, time_long)
 
-#filter to only include the data for specified countries 
+#filter time series data to only include the data for specified countries 
 filtered_spark <- time_spark %>% 
   filter(CountryRegion %in% c("United Kingdom", "Japan", "US", "Brazil", "Mexico")) %>% 
-    collect()
+    compute("filtered_spark")
 
-#renaming so match
-uid_spark <- uid_spark %>% 
+#renaming uid columns so they match time series
+uid_named <- uid_spark %>% 
   rename("Long" = "Long_",
          "ProvinceState" = "Province_State", 
          "CountryRegion" = "Country_Region") %>% 
-    collect()
+    compute("uid_named")
 
 #Recoding blank cells to have NA
-uid_spark <- uid_spark %>%
+uid_clean <- uid_named %>%
   mutate(`ProvinceState` = ifelse(`ProvinceState` == "", NA, `ProvinceState`), 
          `Admin2` = ifelse(`Admin2` == "", NA, `Admin2`)) %>% 
-    collect()
+    compute("uid_clean")
+
+#Filter specified countries in uid dataset
+uid_pop <- uid_clean %>% 
+    filter(CountryRegion %in% c("Brazil", "Japan", "Mexico", "US", "United Kingdom")) %>% 
+    compute("uid_pop")
 
 #Create population sums
-uid_pop <- uid_spark %>% 
-    filter(CountryRegion %in% c("Brazil", "Japan", "Mexico", "US", "United Kingdom")) %>% 
-    collect()
 pop_sum <- uid_pop %>%
   group_by(CountryRegion) %>% 
     summarise(Population = sum(Population, na.rm = TRUE)) %>% 
-      collect()
+      compute("pop_sum")
 
 #Join datasets
 full_pop <- filtered_spark %>% 
   inner_join(pop_sum, by = "CountryRegion") %>% 
-  collect()
+  compute("full_pop")
 
-#Number of cases and rate of cases by country and day
-Cases_by_Day <- full_pop %>%  
+#Calculate number of cases and rate of cases by country and day
+cases_spark <- full_pop %>%  
     group_by(CountryRegion, Population, Date, Days) %>%
     summarize(Total_Cases = sum(Confirmed_COVID_Cases)) %>% 
     mutate(Rate_of_Cases = Total_Cases/Population) %>% 
-      collect()
-#Sending to Server 
-cases_spark <- copy_to(sc, Cases_by_Day)
+      compute("cases_spark")
 ```
 
 # Data Visualization
 ```{r}
-#Count & Country
-Covid_Over_Time <- Cases_by_Day %>%
+#Graph Count by Country
+Covid_Over_Time <- cases_spark %>%
   filter(!is.na(Total_Cases)) %>%
   ggplot(aes(x = Date, y = Total_Cases, color = `CountryRegion`)) +
     geom_smooth(linetype = 1,
@@ -163,8 +119,8 @@ Covid_Over_Time <- Cases_by_Day %>%
         caption = "Data from CSSEGISandData/COVID-19", 
         color = "Country/Region")
 
-#Rate & Country
-Rate_Over_Time <- Cases_by_Day %>% 
+#Graph Rate by Country
+Rate_Over_Time <- cases_spark %>% 
   ggplot(aes(x = Date, y = Rate_of_Cases, color = `CountryRegion`)) +
     geom_smooth(linetype = 1,
       linewidth = 1.25) +
@@ -192,14 +148,11 @@ The graph of infection rates by country shows notable differences from the case 
 
 # Modeling the Data
 ```{r}
-#Log number of cases
-Log_Cases_by_Day <- cases_spark %>% 
+#Calculate log number of cases
+log_spark <- cases_spark %>% 
   mutate(Log_Cases = log1p(Total_Cases)) %>% 
   ungroup() %>%
-  collect()
-
-#Sending to Server 
-log_spark <- copy_to(sc, Log_Cases_by_Day)
+  compute("log_spark")
 
 #Linear Regression
 model <- log_spark %>% 
@@ -213,9 +166,4 @@ model <- log_spark %>%
 The linear regression of the log number of cases provides some interesting information. The *beta~0~* value of 11.44 indicates that, when all predictor variables are equal to zero, the log number of cases is expected to be about 11. When examining the individual countries, the United States is expected to have a log of total cases about 8 cases higher than that of the UK (*beta~US~* = 8.15). Brazil also has a positive expected value compared to the UK (*beta~Brazil~* = 2.80). Mexico is expected to report similar log case totals as the UK, though slightly less (*beta~Mexico~* = -0.10). Japan is expected to report about 0.49 cases less than the United Kingdom (*beta~Japan~* = -0.49). Interestingly, the effect of population size is nearly negligable (*beta~Pop~* = -0.000000008). The number of days since the start of data collection did, however, have an impact on the log number of cases (*beta~Days~* = 0.008). These values should be interpreted with caution, though, as the model could fit the data better as it is currently off by about 2 units from the actual values (*RMSE* = 2.24). 
 
 
-4. Write up everything in an analytic notebook (pdf Rmarkdown) that shows all the syntax you used,
-the results and walk the reader through the steps of your analysis. (20%)
-
-5. Presentation, presentation, presentation: README gives overview of the project and has session info,
-report text is easy to follow, graphs are easy to understand and properly formatted. (10%)
 
