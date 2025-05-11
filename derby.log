@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat May 10 21:41:24 EDT 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0196-bd01-0b4c-00001ba38768 
+Sat May 10 22:37:44 EDT 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0196-bd34-9d4d-00001b83b290 
 on database directory memory:C:\Users\Owner\OneDrive\Documents\SURV675_HW3\databaseName=metastore_db with class loader sun.misc.Launcher$AppClassLoader@26ba2a48 
 Loaded from file:/C:/Users/Owner/AppData/Local/spark/spark-3.5.5-bin-hadoop3/jars/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation

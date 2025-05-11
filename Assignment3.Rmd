@@ -2,15 +2,16 @@
 title: 'SURV675: Assignment 3'
 author: "Riki Engling"
 date: "2025-05-08"
-output: 
+output:
+  pdf_document: default
   html_document:
-          keep_md: true
-editor_options: 
+    keep_md: true
+editor_options:
   chunk_output_type: inline
 ---
 
 # Loading libraries
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(sparklyr)
 library(tidyverse)
 library(lubridate)
@@ -21,7 +22,7 @@ library(corrr)
 ```
 
 # Load, Save, and Prep the Data
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #Read in CSV files
 uid_table <- read.csv("C:\\Users\\Owner\\Downloads\\UID_ISO_FIPS_LookUp_Table.csv")
 time_series <- read_csv("C:\\Users\\Owner\\Downloads\\time_series_covid19_confirmed_global.csv") 
@@ -44,7 +45,7 @@ time_long$Days <- as.numeric(time_long$Date - min(time_long$Date)) + 1
 ```
 
 ## Connect to local Spark server
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #Specify configuration settings due to my computer struggling
 config <- spark_config() 
 
@@ -57,7 +58,7 @@ sc <- spark_connect(master = "local", version = "3.5", config = config)
 ```
 
 ## Move data to Spark
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #Send to server
 uid_spark <- copy_to(sc, uid_table)
 time_spark <- copy_to(sc, time_long)
@@ -105,7 +106,7 @@ cases_spark <- full_pop %>%
 ```
 
 # Data Visualization
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #Graph Count by Country
 Covid_Over_Time <- cases_spark %>%
   filter(!is.na(Total_Cases)) %>%
@@ -134,14 +135,17 @@ Rate_Over_Time <- cases_spark %>%
 
 ## Interpretation 
 
-`r print(Covid_Over_Time)` 
+```{r, message=FALSE}
+print(Covid_Over_Time)
+```
 
 The graph of confirmed COVID cases over time by country reveals distinct patterns. For the first two years, Japan had the fewest cases, followed by Mexico and the UK. By mid-2022, Japan surpassed Mexico, and by early 2023, it exceeded the UK as well. Mexico, Brazil, and the UK saw a plateau between mid-2022 and 2023. Despite initially having fewer cases than Mexico, Japan's numbers eventually increased, while Mexico maintained a steady, slight incline.
 
 Among countries with the highest case counts across multiple years, the US, Brazil, and the UK displayed similar trends of spikes and plateaus at comparable times, but with varying intensities. The US reported the highest numbers, with sharp winter spikes. Brazil also saw increased cases during winter, but less dramatically than the US. The UK had a modest rise in winter 2020-2021, plateaued throughout 2021, and experienced a significant spike during winter 2021-2022, nearly doubling by summer 2022, before stabilizing.
 
-
-`r print(Rate_Over_Time)`
+```{r, message=FALSE}
+print(Rate_Over_Time)
+```
 
 The graph of infection rates by country shows notable differences from the case count graph. Instead of the US leading, the UK reported the highest infection rate, with a sharp spike during the 2021-2022 winter and a gradual rise afterward. By late 2022, Japan had the second-highest rate, surpassing Brazil and the US. From 2020 to mid-2021, the US, UK, and Brazil vied for the highest rate, but by early 2022, the US had surpassed Brazil, while the UK long surpassed both. Unlike the other four countries, Mexico's infection rate closely mirrors its number of confirmed cases.
 
@@ -161,7 +165,9 @@ model <- log_spark %>%
 
 ## Interpretation 
 
-`r summary(model)`
+```{r}
+summary(model)
+```
 
 The linear regression of the log number of cases provides some interesting information. The *beta~0~* value of 11.44 indicates that, when all predictor variables are equal to zero, the log number of cases is expected to be about 11. When examining the individual countries, the United States is expected to have a log of total cases about 8 cases higher than that of the UK (*beta~US~* = 8.15). Brazil also has a positive expected value compared to the UK (*beta~Brazil~* = 2.80). Mexico is expected to report similar log case totals as the UK, though slightly less (*beta~Mexico~* = -0.10). Japan is expected to report about 0.49 cases less than the United Kingdom (*beta~Japan~* = -0.49). Interestingly, the effect of population size is nearly negligable (*beta~Pop~* = -0.000000008). The number of days since the start of data collection did, however, have an impact on the log number of cases (*beta~Days~* = 0.008). These values should be interpreted with caution, though, as the model could fit the data better as it is currently off by about 2 units from the actual values (*RMSE* = 2.24). 
 
