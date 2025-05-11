@@ -1,0 +1,175 @@
+---
+title: 'SURV675: Assignment 3'
+author: "Riki Engling"
+date: "2025-05-08"
+output:
+  pdf_document: default
+  html_document:
+    keep_md: true
+editor_options:
+  chunk_output_type: inline
+---
+
+# Loading libraries
+```{r, warning=FALSE, message=FALSE}
+library(sparklyr)
+library(tidyverse)
+library(lubridate)
+library(haven)
+library(DBI)
+library(dbplot)
+library(corrr)
+```
+
+# Load, Save, and Prep the Data
+```{r, warning=FALSE, message=FALSE}
+#Read in CSV files
+uid_table <- read.csv("C:\\Users\\Owner\\Downloads\\UID_ISO_FIPS_LookUp_Table.csv")
+time_series <- read_csv("C:\\Users\\Owner\\Downloads\\time_series_covid19_confirmed_global.csv") 
+ 
+#Create a Working Copy of the Data and Pivot it
+time_long <- time_series %>% 
+  pivot_longer(
+    cols = !(1:4), 
+    names_to = "Date", 
+    values_to = "Confirmed_COVID_Cases"
+  )
+
+#Making R Read the "Date" column as actual dates
+time_long <- time_long %>%
+  mutate( 
+    Date = lubridate::mdy(time_long$Date))
+
+#Creating the "number of days since start" variable
+time_long$Days <- as.numeric(time_long$Date - min(time_long$Date)) + 1
+```
+
+## Connect to local Spark server
+```{r, warning=FALSE, message=FALSE}
+#Specify configuration settings due to my computer struggling
+config <- spark_config() 
+
+#Increasing memory of driver and executor
+config$spark.driver.memory <- "14G"
+config$spark.executor.memory <- "8G"
+
+#Connect to server
+sc <- spark_connect(master = "local", version = "3.5", config = config)
+```
+
+## Move data to Spark
+```{r, warning=FALSE, message=FALSE}
+#Send to server
+uid_spark <- copy_to(sc, uid_table)
+time_spark <- copy_to(sc, time_long)
+
+#filter time series data to only include the data for specified countries 
+filtered_spark <- time_spark %>% 
+  filter(CountryRegion %in% c("United Kingdom", "Japan", "US", "Brazil", "Mexico")) %>% 
+    compute("filtered_spark")
+
+#renaming uid columns so they match time series
+uid_named <- uid_spark %>% 
+  rename("Long" = "Long_",
+         "ProvinceState" = "Province_State", 
+         "CountryRegion" = "Country_Region") %>% 
+    compute("uid_named")
+
+#Recoding blank cells to have NA
+uid_clean <- uid_named %>%
+  mutate(`ProvinceState` = ifelse(`ProvinceState` == "", NA, `ProvinceState`), 
+         `Admin2` = ifelse(`Admin2` == "", NA, `Admin2`)) %>% 
+    compute("uid_clean")
+
+#Filter specified countries in uid dataset
+uid_pop <- uid_clean %>% 
+    filter(CountryRegion %in% c("Brazil", "Japan", "Mexico", "US", "United Kingdom")) %>% 
+    compute("uid_pop")
+
+#Create population sums
+pop_sum <- uid_pop %>%
+  group_by(CountryRegion) %>% 
+    summarise(Population = sum(Population, na.rm = TRUE)) %>% 
+      compute("pop_sum")
+
+#Join datasets
+full_pop <- filtered_spark %>% 
+  inner_join(pop_sum, by = "CountryRegion") %>% 
+  compute("full_pop")
+
+#Calculate number of cases and rate of cases by country and day
+cases_spark <- full_pop %>%  
+    group_by(CountryRegion, Population, Date, Days) %>%
+    summarize(Total_Cases = sum(Confirmed_COVID_Cases)) %>% 
+    mutate(Rate_of_Cases = Total_Cases/Population) %>% 
+      compute("cases_spark")
+```
+
+# Data Visualization
+```{r, warning=FALSE, message=FALSE}
+#Graph Count by Country
+Covid_Over_Time <- cases_spark %>%
+  filter(!is.na(Total_Cases)) %>%
+  ggplot(aes(x = Date, y = Total_Cases, color = `CountryRegion`)) +
+    geom_smooth(linetype = 1,
+      linewidth = 1.25) +
+  theme_bw() +
+    labs(x = "Date", y = "Number of Confirmed COVID Cases by Country",
+        title = "Figure 1. 
+        Confirmed COVID-19 Cases Over Time",
+        caption = "Data from CSSEGISandData/COVID-19", 
+        color = "Country/Region")
+
+#Graph Rate by Country
+Rate_Over_Time <- cases_spark %>% 
+  ggplot(aes(x = Date, y = Rate_of_Cases, color = `CountryRegion`)) +
+    geom_smooth(linetype = 1,
+      linewidth = 1.25) +
+  theme_bw() +
+    labs(x = "Date", y = "Rate of Infection",
+        title = "Figure 2. 
+        Rate of Infection Over Time by Country",
+        caption = "Data from CSSEGISandData/COVID-19",
+        color = "Country/Region")
+```
+
+## Interpretation 
+
+```{r, message=FALSE}
+print(Covid_Over_Time)
+```
+
+The graph of confirmed COVID cases over time by country reveals distinct patterns. For the first two years, Japan had the fewest cases, followed by Mexico and the UK. By mid-2022, Japan surpassed Mexico, and by early 2023, it exceeded the UK as well. Mexico, Brazil, and the UK saw a plateau between mid-2022 and 2023. Despite initially having fewer cases than Mexico, Japan's numbers eventually increased, while Mexico maintained a steady, slight incline.
+
+Among countries with the highest case counts across multiple years, the US, Brazil, and the UK displayed similar trends of spikes and plateaus at comparable times, but with varying intensities. The US reported the highest numbers, with sharp winter spikes. Brazil also saw increased cases during winter, but less dramatically than the US. The UK had a modest rise in winter 2020-2021, plateaued throughout 2021, and experienced a significant spike during winter 2021-2022, nearly doubling by summer 2022, before stabilizing.
+
+```{r, message=FALSE}
+print(Rate_Over_Time)
+```
+
+The graph of infection rates by country shows notable differences from the case count graph. Instead of the US leading, the UK reported the highest infection rate, with a sharp spike during the 2021-2022 winter and a gradual rise afterward. By late 2022, Japan had the second-highest rate, surpassing Brazil and the US. From 2020 to mid-2021, the US, UK, and Brazil vied for the highest rate, but by early 2022, the US had surpassed Brazil, while the UK long surpassed both. Unlike the other four countries, Mexico's infection rate closely mirrors its number of confirmed cases.
+
+
+# Modeling the Data
+```{r}
+#Calculate log number of cases
+log_spark <- cases_spark %>% 
+  mutate(Log_Cases = log1p(Total_Cases)) %>% 
+  ungroup() %>%
+  compute("log_spark")
+
+#Linear Regression
+model <- log_spark %>% 
+  ml_linear_regression(Log_Cases ~ CountryRegion + Population + Days) 
+```
+
+## Interpretation 
+
+```{r}
+summary(model)
+```
+
+The linear regression of the log number of cases provides some interesting information. The *beta~0~* value of 11.44 indicates that, when all predictor variables are equal to zero, the log number of cases is expected to be about 11. When examining the individual countries, the United States is expected to have a log of total cases about 8 cases higher than that of the UK (*beta~US~* = 8.15). Brazil also has a positive expected value compared to the UK (*beta~Brazil~* = 2.80). Mexico is expected to report similar log case totals as the UK, though slightly less (*beta~Mexico~* = -0.10). Japan is expected to report about 0.49 cases less than the United Kingdom (*beta~Japan~* = -0.49). Interestingly, the effect of population size is nearly negligable (*beta~Pop~* = -0.000000008). The number of days since the start of data collection did, however, have an impact on the log number of cases (*beta~Days~* = 0.008). These values should be interpreted with caution, though, as the model could fit the data better as it is currently off by about 2 units from the actual values (*RMSE* = 2.24). 
+
+
+
